@@ -16,10 +16,7 @@ class _QuoteListState extends State<QuoteList> {
     Quote(author: 'two', text: 'Quote two'),
     Quote(author: 'three', text: 'Quote three'),
   ];
-
-
-
-
+  
   List<String> authors = [''];
   @override
   Widget build(BuildContext context) {
@@ -31,7 +28,14 @@ class _QuoteListState extends State<QuoteList> {
           backgroundColor: Colors.redAccent,
         ),
         body: Column(
-          children: quotes.map((quote) => QuoteCard(quote: quote)).toList(),
+          children: quotes.map((quote) => QuoteCard(
+              quote: quote,
+              delete: () {
+                 setState(() {
+                  quotes.remove(quote) ;
+                });
+            }
+          )).toList(),
         ));
   }
 }
